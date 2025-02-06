@@ -1,0 +1,148 @@
+"use client";
+
+import * as React from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useConfiguredInstance } from "@/hooks/use-configured-instance";
+import { useResponsiveDialog } from "./responsive/dialog";
+import { WrenchIcon } from "lucide-react";
+
+export const instanceFormSchema = z.object({
+  name: z.string().min(3, {
+    message: "Name must be at least 3 characters long",
+  }),
+  webUrl: z.string().url(),
+  apiUrl: z.string().url(),
+  cmsUrl: z.string().url(),
+  color: z.string().optional(),
+});
+
+export const InstanceConfigDialog = ({
+  name = "Configure Instance",
+  triggerContent = <WrenchIcon
+    tabIndex={0}
+    size={24}
+    className="ml-2 hover:scale-75 active:scale-90 focus:scale-90 transition-transform"
+  />,
+}: {
+  name?: string
+  triggerContent?: React.ReactNode;
+}) => {
+  const { Component, setOpen } = useResponsiveDialog({
+    titleContent: name,
+    descriptionContent: [
+      "Please configure your instance settings here. Please note that these settings are stored in your browser,",
+      "and that they are only used to personalize your experience - they do not affect the actual instance.",
+    ].join(" "),
+    triggerContent,
+    children: <ConfiguredInstanceForm onSubmit={(values) => {
+      console.log("Instance form submitted:", values);
+      setOpen(false);
+    }} />,
+  })
+
+  return <Component />
+}
+
+export const ConfiguredInstanceForm = ({ onSubmit: _onSubmit }: {
+  onSubmit?: (values: z.infer<typeof instanceFormSchema>) => void;
+}) => {
+  const [instance, setInstance] = useConfiguredInstance();
+
+  const form = useForm<z.infer<typeof instanceFormSchema>>({
+    resolver: zodResolver(instanceFormSchema),
+    defaultValues: instance,
+  });
+
+  function onSubmit(values: z.infer<typeof instanceFormSchema>) {
+    setInstance(values);
+    _onSubmit?.(values);
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="MGSM Demo" {...field} />
+              </FormControl>
+              <FormDescription>
+                The name of your instance - this will be displayed in the
+                header.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="webUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Web URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://demo.mgsm.io" {...field} />
+              </FormControl>
+              <FormDescription>
+                The URL of your instance website/frontend.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="apiUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>API URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://api.mgsm.io" {...field} />
+              </FormControl>
+              <FormDescription>
+                The URL of the API for your instance.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="cmsUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>CMS URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://cms.mgsm.io" {...field} />
+              </FormControl>
+              <FormDescription>
+                The URL of the CMS for your instance.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" variant={'destructive'}>Submit</Button>
+      </form>
+    </Form>
+  );
+};
