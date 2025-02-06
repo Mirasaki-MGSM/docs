@@ -19,7 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useConfiguredInstance } from "@/hooks/use-configured-instance";
 import { useResponsiveDialog } from "./responsive/dialog";
-import { WrenchIcon } from "lucide-react";
+import { SettingsIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const instanceFormSchema = z.object({
   name: z.string().min(3, {
@@ -32,12 +33,17 @@ export const instanceFormSchema = z.object({
 });
 
 export const InstanceConfigDialog = ({
-  name = "Configure Instance",
-  triggerContent = <WrenchIcon
-    tabIndex={0}
-    size={24}
-    className="ml-2 hover:scale-75 active:scale-90 focus:scale-90 transition-transform"
-  />,
+  name = "Instance Settings/Configuration",
+  triggerContent = <span suppressHydrationWarning className={cn(
+    "group size-6 shrink-0 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center",
+    typeof window !== "undefined" && window.location.pathname !== '/' && "ml-2",
+  )}>
+    <SettingsIcon
+      tabIndex={0}
+      size={16}
+      className="group-hover:scale-90 group-active:scale-90 group-focus:scale-90 transition-transform"
+    />
+  </span>,
 }: {
   name?: string
   triggerContent?: React.ReactNode;
@@ -45,7 +51,8 @@ export const InstanceConfigDialog = ({
   const { Component, setOpen } = useResponsiveDialog({
     titleContent: name,
     descriptionContent: [
-      "Please configure your instance settings here. Please note that these settings are stored in your browser,",
+      "You can configure your instance settings here to personalize the documentation for your environment.",
+      "Please note that these settings are only stored in your (current) browser,",
       "and that they are only used to personalize your experience - they do not affect the actual instance.",
     ].join(" "),
     triggerContent,
@@ -141,7 +148,7 @@ export const ConfiguredInstanceForm = ({ onSubmit: _onSubmit }: {
             </FormItem>
           )}
         />
-        <Button type="submit" variant={'destructive'}>Submit</Button>
+        <Button type="submit" variant={'default'}>Submit</Button>
       </form>
     </Form>
   );

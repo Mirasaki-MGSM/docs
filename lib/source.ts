@@ -5,7 +5,6 @@ import * as React from 'react';
 
 export const source = loader({
   baseUrl: '/docs',
-  // @ts-expect-error - docs is of type never?
   source: docs.toFumadocsSource(),
   icon(icon) {
     if (!icon) {

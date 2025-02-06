@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import githubLogo from '../public/logos/github-mark.svg'
 import githubLogoWhite from '../public/logos/github-mark-white.svg'
+import discordLogo from '../public/logos/discord-mark-blue.svg'
 
 import Logo from '@/components/logo';
 import { InstanceConfigDialog } from '@/components/configure-instance';
@@ -25,7 +26,7 @@ export const baseOptions: BaseLayoutProps = {
   },
   links: [
     {
-      text: 'Create an Issue',
+      text: 'Report Issue',
       url: 'https://github.com/Mirasaki-MGSM/issue-tracker/issues',
       active: 'nested-url',
       external: true,
@@ -34,5 +35,12 @@ export const baseOptions: BaseLayoutProps = {
         <Image src={githubLogoWhite} alt="Github Logo" width={24} height={24} className='hidden dark:block' />
       </>,
     },
+    {
+      text: 'Discord',
+      url: 'https://discord.gg/mgsm',
+      active: 'nested-url',
+      external: true,
+      icon: <Image src={discordLogo} alt="Discord Logo" width={24} height={24} />,
+    }
   ],
 };

@@ -36,11 +36,16 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
+  if (!process.env.NEXT_PUBLIC_SITE_URL) {
+    throw new Error('NEXT_PUBLIC_SITE_URL is required');
+  }
+  
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
  
   return metadataImage.withImage(page.slugs, {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     title: page.data.title,
     description: page.data.description,
   });
