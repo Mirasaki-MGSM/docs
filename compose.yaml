@@ -2,12 +2,12 @@ services:
   web:
     build:
       context: ./
-    env_file: ./.env.local
+    env_file: .env.local
     restart: always
     networks:
       - app_network
     ports:
-      - ${DOCKER_EXPOSE_PORT}:3000
+      - 7430:3000
 
 networks:
   app_network:
