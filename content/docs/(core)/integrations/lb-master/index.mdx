@@ -1,0 +1,72 @@
+---
+title: LB Core API
+description: MGSM integrates with LB Master mods, allowing you to sell perks relating to their mods by setting up a connection to our servers.
+full: false
+---
+
+import { InstanceProperty } from '@/components/instance-data'
+
+## Introduction
+
+The [LB Core](https://lbmaster.de/product.php?id=17) API is a powerful tool that allows you to programmatically make LB Master related changes. If you use any LB Master mods on your server, you can use this tool to automatically assign in-game perks (relating to [LB Master mods](https://lbmaster.de/)) to players who purchase them on your website.
+
+## Perks
+
+The following perks are available to be automated through a connection between our servers and the LB Core API:
+
+- [Player **Chat Prefixes**](/docs/integrations/lb-master/chat-prefixes)
+- [Group **Tag Colors**](/docs/integrations/lb-master/chat-tag-colors)
+- [Group and Player **Skins**](/docs/integrations/lb-master/skins)
+- [Cosmetic **Spawn Clothing**](/docs/integrations/lb-master/spawn-clothing) (coming soon)
+- [Custom **Killfeed Colors**](/docs/integrations/lb-master/killfeed-colors)
+
+<Callout type="info">
+    These links are not yet available, but will be soon. Please check back later.
+</Callout>
+
+## Getting Started
+
+To get started with the LB Core API, you will need to install the LB Core mod on your server. You can find the mod on [their website](https://lbmaster.de/product.php?id=17), along with [installation instructions](https://lbmaster.de/install/?p=17&h=1). Do note, you can change your server host/provider at the top of the page to personalize the installation instructions.
+
+### Configuration
+
+The configuration file can be found at the following location: `profiles\LBmaster\Config\Common\Api.json`.
+
+#### Example
+
+```json
+{
+    "version": 1,
+    "entries": [ 
+        {
+            "enabled": 1,
+            "name": "mgsm-demo | MGSM",
+            "pollUrl": "{{API_BASE_URL}}/relay/poll/{{SERVER_IDENTIFIER}}?",
+            "responseUrl": "{{API_BASE_URL}}/relay/response/{{SERVER_IDENTIFIER}}?",
+            "apiKey": "{{API_KEY}}",
+            "restrictedAccess": 1
+        }
+    ]
+}
+```
+
+#### Fields
+
+| Field | Description |
+| --- | --- |
+| `version` | The current version of the configuration file, used to automatically update the file. |
+| `entries` | Array of entries, each representing a connection to a specific server. |
+| `entries.enabled` | Whether the connection is enabled or not. |
+| `entries.name` | The name of the connection - something to identify it by. |
+| `entries.pollUrl` | The URL to poll for new requests. |
+| `entries.responseUrl` | The URL to send responses to. |
+| `entries.apiKey` | The API key to authenticate with the MGSM API. |
+| `entries.restrictedAccess` | Whether the connection is allowed to modify any local server files or not. |
+
+#### Placeholders
+
+| Placeholder | Description |
+| --- | --- |
+| `{{API_BASE_URL}}` | The base URL of the API to poll. For MGSM, this is your API/backend URL: <code><InstanceProperty property="apiUrl" /></code>. |
+| `{{SERVER_IDENTIFIER}}` | The unique identifier of the server. For MGSM, this is defined in your `Server` Content Type (on the CMS). |
+| `{{API_KEY}}` | The API key to authenticate requests. For MGSM, we send you this key during the onboarding process. |

@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         banner: (
           <Callout className="shadow-none">
             This documentation is a work in progress. If you have any questions
-            or need help, please reach out to us on our{' '}
+            or need help, please reach out to us in our{' '}
             <Link
               href="https://discord.gg/mgsm"
               target="_blank"

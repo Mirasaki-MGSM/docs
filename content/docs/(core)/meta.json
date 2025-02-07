@@ -1,0 +1,17 @@
+{
+    "title": "General",
+    "root": true,
+    "pages": [
+        "index",
+        "definitions",
+        "getting-started",
+        "integrations",
+        "advanced",
+        "---Quick Links---",
+        "[Instance CMS]({{INSTANCE_CMS_URL}})",
+        "[Instance Web]({{INSTANCE_WEB_URL}})",
+        "[Instance API]({{INSTANCE_API_URL}})",
+        "[MGSM Discord](https://discord.gg/mgsm)",
+        "[MGSM GitHub](https://github.com/Mirasaki-MGSM)"
+    ]
+}

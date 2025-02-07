@@ -2,5 +2,5 @@
   "title": "Integrations",
   "icon": "Puzzle",
   "defaultOpen": false,
-  "pages": ["cftools", "discord", "steam"]
+  "pages": ["cftools", "discord", "lb-master", "steam"]
 }

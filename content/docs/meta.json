@@ -1,3 +1,7 @@
 {
-    "pages": ["index", "definitions", "getting-started", "integrations", "advanced"]
+    "pages": [
+        "(core)",
+        "cms",
+        "lb-master"
+    ]
 }

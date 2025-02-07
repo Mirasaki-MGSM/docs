@@ -1,0 +1,11 @@
+{
+    "root": true,
+    "title": "Strapi CMS",
+    "icon": "FileText",
+    "pages": [
+        "index",
+        "---Quick Links---",
+        "[Instance CMS]({{INSTANCE_CMS_URL}})",
+        "[Ask a Question](https://discord.gg/mgsm)"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "title": "LB Master",
+    "icon": "Codepen",
+    "pages": [
+        "index",
+        "chat-prefixes",
+        "group-tag-colors",
+        "skins",
+        "spawn-clothing",
+        "killfeed-colors"
+    ]
+}
