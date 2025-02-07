@@ -1,47 +1,60 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export type Instance = {
-    name: string;
-    webUrl: string;
-    apiUrl: string;
-    cmsUrl: string;
-    color?: string;
+  name: string;
+  webUrl: string;
+  apiUrl: string;
+  cmsUrl: string;
 };
 
-const STORAGE_KEY = "configuredInstance";
+const STORAGE_KEY = 'configuredInstance';
 
 export const defaultInstance: Instance = {
-    name: "MGSM Demo",
-    webUrl: "https://demo.mgsm.io",
-    apiUrl: "https://api.mgsm.io",
-    cmsUrl: "https://cms.mgsm.io",
-    color: "#FF0000",
+  name: 'MGSM Demo',
+  webUrl: 'https://demo.mgsm.io',
+  apiUrl: 'https://api.mgsm.io',
+  cmsUrl: 'https://cms.mgsm.io',
 };
 
-/**
- * React hook that resolves the configured instance
- * @returns The configured instance and a setter function
- */
-export const useConfiguredInstance = (): [Instance, (config: Instance) => void] => {
-    const [instance, _setInstance] = useState<Instance>(() => {
-        try {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            return stored ? JSON.parse(stored) : defaultInstance;
-        } catch {
-            return defaultInstance;
-        }
-    });
+type ConfiguredInstanceContextType = {
+  instance: Instance;
+  setInstance: (config: Instance) => void;
+};
 
-    useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(instance));
-    }, [instance]);
+const ConfiguredInstanceContext = createContext<ConfiguredInstanceContextType | undefined>(undefined);
 
-    const setInstance = (config: Instance) => {
-        _setInstance(config);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-    };
+export const ConfiguredInstanceProvider = ({ children }: { children: ReactNode }) => {
+  const [instance, _setInstance] = useState<Instance>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : defaultInstance;
+    } catch {
+      return defaultInstance;
+    }
+  });
 
-    return [instance, setInstance];
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(instance));
+  }, [instance]);
+
+  const setInstance = (config: Instance) => {
+    _setInstance(config);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+  };
+
+  return (
+    <ConfiguredInstanceContext.Provider value={{ instance, setInstance }}>
+      {children}
+    </ConfiguredInstanceContext.Provider>
+  );
+};
+
+export const useConfiguredInstance = () => {
+  const context = useContext(ConfiguredInstanceContext);
+  if (!context) {
+    throw new Error('useConfiguredInstance must be used within a ConfiguredInstanceProvider');
+  }
+  return context;
 };

@@ -1,0 +1,6 @@
+{
+  "title": "Getting Started",
+  "icon": "Rocket",
+  "defaultOpen": false,
+  "pages": ["preparation", "onboarding"]
+}

@@ -1,0 +1,65 @@
+---
+title: Developer Application
+description: Learn how to create a Discord application for use with MGSM. This application will be used to log in users, send notifications, handle roles, and more. This guide will walk you through creating a new Discord application.
+full: false
+---
+
+import * as React from "react";
+import Link from "next/link";
+import { PlusIcon } from "lucide-react";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import { InstanceProperty } from "@/components/instance-data";
+import DiscordBotInvite from "@/components/discord-bot-invite";
+import DiscordRedirectUrl from "@/components/discord-redirect-url";
+import { defaultInstance } from "@/hooks/use-configured-instance";
+import { CopyButton } from "@/components/copy-button";
+import DocsNotPersonalized from "@/components/docs-not-personalized";
+
+## Steps
+
+<Steps>
+    <Step>
+        ### Create the Application
+
+        <Card
+            href="https://discord.com/developers/applications?new_application=true"
+            className="shadow-none"
+            title="Create Application"
+            icon={<PlusIcon className="text-green-500" />}
+        >
+            Click here to create a new Discord application.
+        </Card>
+
+        <Callout type="info">
+            While a **new** application isn't technically required, it is recommended to create a new application for MGSM to use. Things might not work correctly if you use a token from an existing application, depending on the application's configuration.
+        </Callout>
+
+        Provide a name for your application and click the "Create" button.
+    </Step>
+
+    <Step>
+        ### Configure the Application
+
+        We will need the following information from the application:
+
+        | Name | Description |
+        | ---- | ----------- |
+        | Application ID | This is the unique identifier for your application. |
+        | Token | This is the token that will be used to authenticate your bot. |
+        | Secret | This is the secret that will be used to authenticate your bot. |
+
+        <DocsNotPersonalized className="my-0" />
+
+        1. Copy the "Application ID" from the "General Information" tab.
+        2. Click on the "Bot" tab in the sidebar.
+            - Click the "Reset Token" button to generate a new token.
+            - Scroll a little bit down until you find "Privileged Gateway Intents", enable the "Server Members Intent".
+            - If you want to make this application private, you will have to select `None` for "Install Link" under the "Installation" tab.
+        3. Click on the "OAuth2" tab in the sidebar.
+            - Click the "Reset Secret" button to generate a new secret.
+            - Click the "Add Redirect" button and add the following URL:
+                <DiscordRedirectUrl className='mt-2' />
+            - Provide your "Your Application ID" from earlier, and open the generated link in a new tab.
+                <DiscordBotInvite className='mt-2' />
+    </Step>
+</Steps>

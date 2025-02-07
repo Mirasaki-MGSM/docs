@@ -1,5 +1,5 @@
-import Image, { ImageProps } from 'next/image'
-import React from 'react'
+import Image, { ImageProps } from 'next/image';
+import React from 'react';
 
 const Logo = ({
   alt = 'Logo',
@@ -12,7 +12,7 @@ const Logo = ({
   displayText?: string;
 }) => {
   return (
-    <div className='flex items-center space-x-2'>
+    <div className="flex items-center space-x-2">
       <Image
         src="/logo.png"
         alt={alt}
@@ -22,7 +22,7 @@ const Logo = ({
       />
       {displayText && <span>{displayText}</span>}
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

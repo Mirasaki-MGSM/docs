@@ -1,0 +1,94 @@
+---
+title: Definitions
+description: This page contains a list of terms and definitions used throughout the MGSM platform. If you're unsure about the meaning of a term, you can find it here. We will keep this list updated as new terms are introduced, so you can always find the information you need.
+icon: BookOpen
+full: false
+---
+
+import {
+  ServerIcon,
+  GlobeIcon,
+  PencilIcon,
+  BoxesIcon,
+  BriefcaseIcon,
+  UsersIcon,
+  Gamepad2Icon,
+  CheckIcon,
+} from 'lucide-react';
+
+<Callout type="info">
+  If you're looking for a specific term, or you come across a word you don't
+  quite understand, you can use the search bar at the top-left (top-right on
+  mobile) of the page to find it quickly.
+</Callout>
+
+## Structure
+
+The MGSM platform is made up of several components, each of which plays a different role in providing you with the service. Here's a breakdown of the main components:
+
+<Card
+  className="shadow-none"
+  href="/docs/definitions/game-server"
+  title="Game-server"
+  icon={<Gamepad2Icon />}
+  description="A game-server is a server that hosts multiplayer games, allowing players to connect and play together. Game-servers can be run by game developers, communities, or individuals, and provide a platform for players to interact and compete in online games."
+/>
+
+<Cards className="mt-2 gap-2">
+  <Card
+    className="shadow-none"
+    href="/docs/definitions/instance"
+    title="Instance"
+    icon={<BoxesIcon />}
+    description="Your instance is the combination of all applications that are used to provide you with the services you need to manage your game-server, community, or services."
+  />
+  <Card
+    className="shadow-none"
+    href="/docs/definitions/web"
+    title="Web/Frontend"
+    icon={<GlobeIcon />}
+    description="The web/frontend is the public-facing part of your instance, where users can access information about your game-server, community, or services."
+  />
+  <Card
+    className="shadow-none"
+    href="/docs/definitions/cms"
+    title="CMS"
+    icon={<PencilIcon />}
+    description="The CMS is the part of your instance that allows you to manage the content on your website. This includes creating and editing pages, adding images and videos, or updating Content Types."
+  />
+  <Card
+    className="shadow-none"
+    href="/docs/definitions/api"
+    title="API/Backend"
+    icon={<ServerIcon />}
+    description="The API is the part of your instance that handles the behind-the-scenes operations, such as processing payments, managing user accounts, or updating data in the database."
+  />
+</Cards>
+
+<Callout
+  type="info"
+  className="mt-2 shadow-none"
+  icon={<CheckIcon className="text-green-500" />}
+>
+  You can click on the cards **above** to learn more about each term and any
+  related concepts.
+</Callout>
+
+## People
+
+A clear distinction we need to make is that there are two main groups of people that interact with the MGSM platform:
+
+<Cards className="gap-2">
+  <Card
+    className="shadow-none"
+    title="Clients"
+    icon={<BriefcaseIcon />}
+    description="Client are users of the MGSM platform/service, if you manage an instance of the platform, you are a client of MGSM."
+  />
+  <Card
+    className="shadow-none"
+    title="Users"
+    icon={<UsersIcon />}
+    description="Users are individuals who interact with your instance. Generally speaking, these are your players, customers, or the people that form your community."
+  />
+</Cards>

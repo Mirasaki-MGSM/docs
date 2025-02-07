@@ -1,0 +1,65 @@
+---
+title: Preparation
+description: MGSM requests that you prepare the following before getting started. While not technically required, it will make the onboarding process much smoother and quicker.
+icon: ListChecks
+full: false
+---
+
+import { Link } from 'next/link';
+import { CheckIcon } from 'lucide-react';
+
+<Callout type="info">
+  Please feel free to skip this page if you're intimidated by the amount of
+  information requested, or if you're not sure about some of the items. You can
+  always come back to this page later, or ask for help in the [MGSM Discord
+  server](https://discord.gg/mgsm).
+</Callout>
+
+## Information required
+
+Before you start the onboarding process, please make sure you have the following information ready:
+
+| Item                     | Description                                                                                                                                                                                            | Example                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| Game-server or community | The name of your game-server or community. This can be anything you like, but it should be (somewhat) unique to you and easy to remember.                                                              | `My Awesome Game Server`                                  |
+| URLs                     | The URL(s) on which you would like to use MGSM. **Please note**: MGSM does **not** require you to purchase a domain name, and you are free to use any `x.mgsm.io` subdomain (if it is available).      | `(www.)example.com`, `api.example.com`, `cms.example.com` |
+| Currency                 | The currency you would like to use for your instance. (e.g. USD, EUR, GBP)                                                                                                                             | `USD` or `$`                                              |
+| Email address            | A valid email address that you have access to - this will be used for account verification and communication. **Make sure you use this email address during the onboarding process.**                  | `me@mirasaki.dev`                                         |
+| Webhook URLs             | URLs to which MGSM will send notifications for various events. You can find more information about webhooks in the [documentation](/docs/advanced/webhooks). Currently only supports Discord webhooks. | `https://discord.com/api/webhooks/...`                    |
+
+<Card
+  href="/docs/getting-started/onboarding"
+  title="Next steps"
+  icon={<CheckIcon className="text-green-500" />}
+>
+  That's it! You're all set to start the onboarding process. If you have all the
+  information above, you're ready to get started. If you're missing something,
+  don't worry - you can always come back to this page later. Alternative, keep
+  reading to prepare even more.
+</Card>
+
+## Extras (optional)
+
+If you would like to save additional time during the onboarding process, you can also prepare the following:
+
+<Callout type="warn">
+  Skip this section if you're not very technical, or if something here isn't
+  immediately clear to you. We will review this information with you during the
+  onboarding process, and assist you with the setup.
+</Callout>
+
+### 1. Discord Application
+
+MGSM uses Discord for authentication and communication. If you would like to use MGSM, you will need to create a Discord application. We have documented the process in [this guide](/docs/integrations/discord).
+
+### 2. Steam API Key
+
+If you would like to use Steam authentication, you will need to create a Steam API key. You can find more information about this in the [documentation](/docs/integrations/steam).
+
+### 3. CFTools Access Grant
+
+If you would like to use CFTools integration (server status, priority queue, etc.), you will need to provide us with an [access grant](https://app.cftools.cloud/authorize/6709668146b3a1fc4c9de212). You can read more about this process [here](/docs/integrations/cftools).
+
+### 4. Domain, DNS, and SSL/TLS configuration (advanced)
+
+MGSM uses [Cloudflare](https://cloudflare.com) for DNS and SSL/TLS. If you would like to use your own domain name, you will need to set up a Cloudflare account and configure your DNS settings. We created [detailed instructions](/docs/advanced/cloudflare) to help you with this process - **please note** that we will guide you through this process during the onboarding process, you are not required to do this yourself.

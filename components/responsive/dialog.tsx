@@ -49,62 +49,70 @@ export function useResponsiveDialog({
   const isMobile = useIsMobile();
   const isDesktop = !isMobile;
 
-  if (isDesktop) return {
-    open,
-    setOpen,
-    Component: () => (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          {triggerContent}
-        </DialogTrigger>
-        <DialogContent className={cn(contentClassName, 'sm:max-w-[425px] max-w-full')}>
-          <DialogHeader className={cn('max-w-full', headerClassName)}>
-            <DialogTitle>
-              {titleContent}
-            </DialogTitle>
-            {descriptionContent && <DialogDescription>
-              {descriptionContent}
-            </DialogDescription>}
-          </DialogHeader>
+  if (isDesktop)
+    return {
+      open,
+      setOpen,
+      Component: () => (
+        <Dialog
+          open={open}
+          onOpenChange={setOpen}
+        >
+          <DialogTrigger asChild>{triggerContent}</DialogTrigger>
+          <DialogContent
+            className={cn(contentClassName, 'sm:max-w-[425px] max-w-full')}
+          >
+            <DialogHeader className={cn('max-w-full', headerClassName)}>
+              <DialogTitle>{titleContent}</DialogTitle>
+              {descriptionContent && (
+                <DialogDescription>{descriptionContent}</DialogDescription>
+              )}
+            </DialogHeader>
 
-          {children}
+            {children}
 
-          {(closeContent || footerContent) && <DialogFooter className="sm:justify-start">
-            {closeContent && <DialogClose asChild>
-              {closeContent}
-            </DialogClose>}
-            {footerContent}
-          </DialogFooter>}
-        </DialogContent>
-      </Dialog>
-    ),
-  };
-  else return {
-    open,
-    setOpen,
-    Component: () => (<Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        {triggerContent}
-      </DrawerTrigger>
-      <DrawerContent className={cn('max-w-full', contentClassName)}>
-        <DrawerHeader className={cn('max-w-full text-left', headerClassName)}>
-          <DrawerTitle>
-            {titleContent}
-          </DrawerTitle>
-          {descriptionContent && <DrawerDescription>
-            {descriptionContent}
-          </DrawerDescription>}
-        </DrawerHeader>
-        <div className={'grid gap-1.5 p-4 text-left'}>
-          {children}
-        </div>
-        {(closeContent || footerContent) && <DrawerFooter className="pt-2">
-          {footerContent}
-          {closeContent && <DrawerClose asChild>
-            {closeContent}
-          </DrawerClose>}
-        </DrawerFooter>}
-      </DrawerContent>
-    </Drawer>),
-  };
+            {(closeContent || footerContent) && (
+              <DialogFooter className="sm:justify-start">
+                {closeContent && (
+                  <DialogClose asChild>{closeContent}</DialogClose>
+                )}
+                {footerContent}
+              </DialogFooter>
+            )}
+          </DialogContent>
+        </Dialog>
+      ),
+    };
+  else
+    return {
+      open,
+      setOpen,
+      Component: () => (
+        <Drawer
+          open={open}
+          onOpenChange={setOpen}
+        >
+          <DrawerTrigger asChild>{triggerContent}</DrawerTrigger>
+          <DrawerContent className={cn('max-w-full', contentClassName)}>
+            <DrawerHeader
+              className={cn('max-w-full text-left', headerClassName)}
+            >
+              <DrawerTitle>{titleContent}</DrawerTitle>
+              {descriptionContent && (
+                <DrawerDescription>{descriptionContent}</DrawerDescription>
+              )}
+            </DrawerHeader>
+            <div className={'grid gap-1.5 p-4 text-left'}>{children}</div>
+            {(closeContent || footerContent) && (
+              <DrawerFooter className="pt-2">
+                {footerContent}
+                {closeContent && (
+                  <DrawerClose asChild>{closeContent}</DrawerClose>
+                )}
+              </DrawerFooter>
+            )}
+          </DrawerContent>
+        </Drawer>
+      ),
+    };
 }

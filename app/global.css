@@ -29,7 +29,9 @@
   }
 }
 
-:root {
+/* ShadCN UI */
+
+/* :root {
     --background: hsl(0 0% 100%);
     --foreground: hsl(222.2 47.4% 11.2%);
     --muted: hsl(210 40% 96.1%);
@@ -72,46 +74,93 @@
     --destructive: hsl(0 63% 31%);
     --destructive-foreground: hsl(210 40% 98%);
     --ring: hsl(216 34% 17%);
+} */
+
+/* Fumadocs, ocean theme */
+:root {
+  --background: var(--color-fd-background);
+  --foreground: var(--color-fd-foreground);
+  --muted: var(--color-fd-muted);
+  --muted-foreground: var(--color-fd-muted-foreground);
+  --popover: var(--color-fd-popover);
+  --popover-foreground: var(--color-fd-popover-foreground);
+  --border: var(--color-fd-border);
+  --input: hsl(214.3 31.8% 91.4%);
+  --card: var(--color-fd-card);
+  --card-foreground: var(--color-fd-card-foreground);
+  --primary: var(--color-fd-primary);
+  --primary-foreground: var(--color-fd-primary-foreground);
+  --secondary: var(--color-fd-secondary);
+  --secondary-foreground: var(--color-fd-secondary-foreground);
+  --accent: var(--color-fd-accent);
+  --accent-foreground: var(--color-fd-accent-foreground);
+  --destructive: hsl(0 100% 50%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --ring: var(--color-fd-ring);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: var(--color-fd-background);
+  --foreground: var(--color-fd-foreground);
+  --muted: var(--color-fd-muted);
+  --muted-foreground: var(--color-fd-muted-foreground);
+  --popover: var(--color-fd-popover);
+  --popover-foreground: var(--color-fd-popover-foreground);
+  --border: var(--color-fd-border);
+  --input: hsl(216 34% 17%);
+  --card: var(--color-fd-card);
+  --card-foreground: var(--color-fd-card-foreground);
+  --primary: var(--color-fd-primary);
+  --primary-foreground: var(--color-fd-primary-foreground);
+  --secondary: var(--color-fd-secondary);
+  --secondary-foreground: var(--color-fd-secondary-foreground);
+  --accent: var(--color-fd-accent);
+  --accent-foreground: var(--color-fd-accent-foreground);
+  --destructive: hsl(0 63% 31%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --ring: var(--color-fd-ring);
+  --radius: 0.5rem;
 }
 
 @theme inline {
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
-  
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-  
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-  
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-  
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-  
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-  
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-  
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-  
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-  }
-   
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+}
+
 @layer base {
-    * {
-        @apply box-border;
-    }
-    body {
-        @apply font-sans antialiased bg-background text-foreground;
-    }
+  * {
+    @apply box-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
 }

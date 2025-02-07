@@ -11,7 +11,8 @@ export const source = loader({
       // You may set a default icon
       return;
     }
- 
-    if (icon in icons) return React.createElement(icons[icon as keyof typeof icons]);
+
+    if (icon in icons)
+      return React.createElement(icons[icon as keyof typeof icons]);
   },
 });

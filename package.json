@@ -5,6 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "format": "pnpm dlx prettier --write --ignore-unknown ./*",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "pnpm run format && eslint . --fix",
     "start": "next start",
     "postinstall": "fumadocs-mdx"
   },
@@ -19,6 +22,7 @@
     "fumadocs-mdx": "11.5.0",
     "fumadocs-ui": "15.0.3",
     "lucide-react": "^0.474.0",
+    "motion": "^12.4.0",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -1,0 +1,5 @@
+{
+  "title": "Discord",
+  "icon": "MessageSquare",
+  "pages": ["commands", "developer-application", "developer-mode"]
+}
