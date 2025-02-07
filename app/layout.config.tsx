@@ -1,9 +1,9 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import Image from 'next/image';
 
-import githubLogo from './public/logos/github-mark.svg';
-import githubLogoWhite from './public/logos/github-mark-white.svg';
-import discordLogo from './public/logos/discord-mark-blue.svg';
+import githubLogo from '../public/logos/github-mark.svg';
+import githubLogoWhite from '../public/logos/github-mark-white.svg';
+import discordLogo from '../public/logos/discord-mark-blue.svg';
 
 import Logo from '@/components/logo';
 import { InstanceConfigDialog } from '@/components/configure-instance';
