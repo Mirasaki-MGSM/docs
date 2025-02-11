@@ -1,3 +1,4 @@
 {
-    "icon": "LibraryBig"
+    "icon": "LibraryBig",
+    "pages": ["cloudflare", "webhooks", "stripe"]
 }
