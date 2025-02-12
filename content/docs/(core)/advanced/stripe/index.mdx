@@ -11,6 +11,16 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 
 To get started, you will need to create a Stripe account for MGSM. You likely already have a Stripe account for MGSM if you have completed the onboarding process. If you do not have a Stripe account, you can create one [here](https://onboarding.mgsm.io/).
 
+## The MGSM account
+
+Before we start, let's take a look at the MGSM account in the Stripe dashboard. The "MGSM account" is the account that is used to manage all the payments and transactions for your MGSM instance. It is indicated by the small MGSM logo in the bottom-right corner of the Stripe account/store icon.
+
+<Callout type="warn">
+    If you installed the MGSM account under an organization, you will **not** see the MGSM logo - please take a mental note of which store is your MGSM account when using multiple Stripe accounts under an organization.
+</Callout>
+
+![MGSM account](./img/mgsm-account.png)
+
 ## Use Custom Domain
 
 To use a custom (checkout) domain with Stripe, you will need to set up a CNAME record with your domain registrar. This will allow you to use your own domain for the checkout process instead of the default Stripe domain (e.g. `checkout.stripe.com`).
