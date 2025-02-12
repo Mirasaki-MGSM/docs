@@ -3,6 +3,7 @@
         "cftools",
         "Codepen",
         "contentlayer",
+        "ENDSSH",
         "fuma",
         "fumadocs",
         "Killfeed",
@@ -11,6 +12,7 @@
         "playercolors",
         "rgba",
         "shadcn",
+        "tsickert",
         "vaul",
         "vercel"
     ]
