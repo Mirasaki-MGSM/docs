@@ -3,11 +3,35 @@
 import { defaultInstance, Instance, useConfiguredInstance } from "@/hooks/use-configured-instance";
 import { useEffect, useState } from "react";
 
-// Note: We use suppressHydrationWarning because the data is resolved from localStorage
+export const getPropertyValue = (
+  instance: Instance,
+  property: keyof Instance,
+  stripSchemeFromUrls: boolean,
+  transformRegionToProxyServer: boolean
+) => {
+  const value = instance[property];
 
-export const InstanceProperty = ({ property, stripSchemeFromUrls = false }: {
+  if (stripSchemeFromUrls && property.endsWith('Url')) {
+    return value.replace(/(^\w+:|^)\/\//, '');
+  }
+
+  if (transformRegionToProxyServer && property === 'region') {
+    if (value === 'EU1') {
+      return 'proxy-eu-1.mgsm.io';
+    }
+
+    if (value === 'NA1') {
+      return 'proxy-na-1.mgsm.io';
+    }  
+  }
+
+  return value;
+}
+
+export const InstanceProperty = ({ property, stripSchemeFromUrls = false, transformRegionToProxyServer = false }: {
   property: keyof Instance;
   stripSchemeFromUrls?: boolean;
+  transformRegionToProxyServer?: boolean;
 }) => {
   const { instance } = useConfiguredInstance();
   const [isClient, setIsClient] = useState(false);
@@ -17,12 +41,8 @@ export const InstanceProperty = ({ property, stripSchemeFromUrls = false }: {
   }, []);
 
   if (!isClient) {
-    return defaultInstance[property];
+    return getPropertyValue(defaultInstance, property, stripSchemeFromUrls, transformRegionToProxyServer);
   }
 
-  if (property.endsWith('Url') && stripSchemeFromUrls) {
-    return instance[property].replace(/(^\w+:|^)\/\//, '');
-  }
-
-  return instance[property];
+  return getPropertyValue(instance, property, stripSchemeFromUrls, transformRegionToProxyServer);
 };

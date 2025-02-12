@@ -22,11 +22,21 @@ import { useResponsiveDialog } from './responsive/dialog';
 import { SettingsIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export const instanceFormSchema = z.object({
   name: z.string().min(3, {
     message: 'Name must be at least 3 characters long',
   }),
+  region: z.enum(['EU1', 'NA1']),
   webUrl: z.string().url(),
   apiUrl: z.string().url(),
   cmsUrl: z.string().url(),
@@ -130,6 +140,36 @@ export const ConfiguredInstanceForm = ({
               <FormDescription>
                 The name of your instance - this will be displayed in the
                 header.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="region"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Region</FormLabel>
+              <FormControl>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a region" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Regions</SelectLabel>
+                      {['EU1', 'NA1'].map((region) => (
+                        <SelectItem key={region} value={region}>
+                          {region}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormDescription>
+                The region of your instance - aka. where it is hosted, or where you want it to be hosted.
               </FormDescription>
               <FormMessage />
             </FormItem>
