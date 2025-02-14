@@ -1,0 +1,90 @@
+---
+title: Form Input Component
+description: Learn more about the Form Input component, and how to collect additional information from users when they purchase a product.
+full: false
+---
+
+import { FieldBadges } from '@/components/ui/badge';
+
+## Form Input <FieldBadges type='Component' multiple /> [#formInput]
+
+<Card
+  title="Form Input"
+  href="/docs/cms/products/form-input"
+>
+  Learn more about the Form Input component for the Product Content Type and how to create and manage form input fields for products in the CMS.
+</Card>
+
+Form input fields are used to collect additional information from users when they purchase the product. Form input fields can include text fields, dropdowns, checkboxes, and other input types that allow users to provide information about their purchase, preferences, or other details that are relevant to the product. The form input values are always included in your logging webhooks. Additionally, if the product creates a [Discord Ticket](/docs/cms/products/modules/perks#discordTicket), the form input fields will be displayed in the ticket creation form.
+
+### Type <FieldBadges type='enum' required options={['text', 'paragraph', 'number', 'select', 'radio', 'checkbox', 'color', 'switch', 'date', 'daterange']} /> [#type]
+
+The type of form input field. The type determines the appearance and behavior of the form input field, such as the input method, validation rules, and other settings that control how the field is displayed and used on the frontend. The available form input types are:
+
+- **Text**: A single-line text input field.
+- **Paragraph**: A multi-line text input field.
+- **Number**: A numeric input field.
+- **Select**: A dropdown select field.
+- **Radio**: A list of options where only one option can be selected - like a multiple-choice question.
+- **Checkbox**: A box that can either be checked or unchecked (true/false).
+- **Color**: A color picker field.
+- **Switch**: A toggle switch field (on/off).
+- **Date**: A (single) date picker field.
+- **Date Range**: A date range picker field, start and end date.
+
+### Required <FieldBadges type='boolean' defaultValue={false} /> [#required]
+
+Determines whether the form input field is required. If this field is enabled, users will be required to provide a value for the form input field before they can purchase the product. If this field is disabled, the form input field is optional, and users can choose whether or not to provide a value for the field.
+
+### Default Value <FieldBadges type='string' /> [#defaultValue]
+
+The default value of the form input field. If this field is set, the default value will be pre-filled in the form input field when users view the product on the frontend. Users can change the default value to provide their own input, or leave the default value as is if it is already correct.
+
+### Name <FieldBadges type='string' required /> [#name]
+
+The name of the form input field. This field is used to identify the form input field in the CMS and on the frontend. The name should be descriptive, concise, and indicative of the information that the form input field collects. For example, if the form input field collects the user's email address, you could name the field "Email Address".
+
+<Callout type='info'>
+  The `name` property is used to identify relations in other components. For example, if your product has a [Chat Tag Color](/docs/cms/products/modules/perks#chatTagColor) perk, you provide the `name` of the Form Input field that collects the color value under `inputName`. This way, the player's chosen color is automatically resolved from the form input field when the perk is redeemed.
+</Callout>
+
+### Description <FieldBadges type='text' /> [#description]
+
+The description of the form input field. This field is used to provide additional information about the form input field to the user, such as its purpose, use cases, and requirements. The description should be informative, concise, and engaging to help users understand why the form input field is needed and how to provide the required information.
+
+### Label <FieldBadges type='string' required /> [#label]
+
+The public-facing label of the form input field. This field is used to display the form input field on the frontend. The label is also what is displayed when the Form Input is used in a [Discord Ticket](/docs/cms/products#modules#perks#discordTicket), and in the logging webhooks - aka. `name` is only used for internal identification.
+
+### Placeholder <FieldBadges type='string' /> [#placeholder]
+
+The placeholder text of the form input field. This field is used to provide a hint or example of the information that should be provided in the form input field. The placeholder text is displayed in the form input field when it is empty, and disappears when the user starts typing in the field. If `defaultValue` is set, the placeholder text will not be displayed by default, since the field is already pre-filled.
+
+### Options <FieldBadges type='comma-separated' /> [#options]
+
+Collection of options for the form input field. The options field is used to provide a list of predefined values that users can select from when they provide input for the form input field. The options field is only available for form input fields with the type "Select", "Radio", and "Switch". For example, if the form input field collects the user's country, you could provide a list of countries as options for the field.
+
+<Callout type='info'>
+  The value is a comma-separated list of options. For example, if you want to provide a list of countries as options for the form input field, you could enter `USA, Canada, Mexico, Brazil, Argentina` in the options field.
+</Callout>
+
+### Min Length <FieldBadges type='number' min={1} /> [#minLength]
+
+The minimum length of the form input field. If this field is set, users will be required to provide a value for the form input field that is at least as long as the minimum length. If the value provided by the user is shorter than the minimum length, an error message will be displayed, and the user will be prompted to provide a longer value.
+
+### Max Length <FieldBadges type='number' min={1} /> [#maxLength]
+
+The maximum length of the form input field. If this field is set, users will be required to provide a value for the form input field that is at most as long as the maximum length. If the value provided by the user is longer than the maximum length, an error message will be displayed, and the user will be prompted to provide a shorter value.
+
+### Validation Regex <FieldBadges type='string(regex)' /> [#validationRegex]
+
+The regular expression used to validate the form input field. If this field is set, the value provided by the user will be checked against the regular expression to ensure that it matches the required format. If the value provided by the user does not match the regular expression, an error message will be displayed (a generic error is shown if the `Regex Helper Text` is left empty), and the user will be prompted to provide a valid value.
+
+<Callout type='info'>
+  Regular expressions are used to validate text input fields based on a specific pattern or format. For example, you could use a regular expression to validate an email address, phone number, or credit card number. If you're not familiar with regular expressions, you can use an online tool like [RegExr](https://regex101.com/) to create, test, and debug regular expressions for your form input fields.
+</Callout>
+
+### Regex Helper Text <FieldBadges type='string' /> [#regexHelperText]
+
+The helper text that is displayed when the value provided by the user does not match the regular expression. If this field is set, and the user provides a value that does not match the regular expression, the helper text will be displayed to explain why the value is invalid and how to correct it. The helper text should be informative, concise, and helpful to guide users in providing a valid value for the form input field. If an expression is set, but no helper text is provided, a generic error message is shown - this is a very bad user experience.
+

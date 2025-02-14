@@ -4,6 +4,9 @@
     "icon": "FileText",
     "pages": [
         "index",
+        "---Content Type Specifications---",
+        "products",
+        "product-variants",
         "---Quick Links---",
         "[Instance CMS]({{INSTANCE_CMS_URL}})",
         "[Ask a Question](https://discord.gg/mgsm)"

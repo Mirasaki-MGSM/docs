@@ -1,0 +1,40 @@
+---
+title: Product Variants
+description: Learn more about the Product Variant Content Type and how to create and manage variants for your products.
+icon: Boxes
+full: false
+---
+
+import { FieldBadges } from '@/components/ui/badge';
+
+## Introduction
+
+The **Product Variant** Content Type in the CMS is used to define variations of your products. Variants work in conjunction with [**Products**](/docs/cms/products) to provide additional options for your products, such as longer perks and subscriptions instead of one-time payments. Each variant can have its own name, price, and other attributes that differentiate it from the base product.
+
+## Inheritance
+
+Product Variants inherit all fields from the base Product it's connected to. This allows you to define common attributes at the product level and override them at the variant level as needed. For example, you might have a "Priority Queue" product with variants for how long the perk lasts, such as "1 Month", "3 Months", and "1 Year".
+
+## Fields
+
+The Product Variant Content Type includes the following fields: (in order of appearance)
+
+<Callout type="info">
+  If you update a field at the product level, it will automatically be updated for all variants as well, unless the field is overridden at the variant level.
+</Callout>
+
+### Product Fields <FieldBadges type='inherited' hideOptional /> [#product-fields]
+
+Variants share a lot of fields with the Product Content Type, you can find the full list of fields in the [**Products**](/docs/cms/products) documentation. We wil only cover the fields that are unique to the Variant Content Type here.
+
+<Callout type="warn">
+  Not all Product fields can be overridden at the Variant level, if a field/property/attribute is not available for Variants on the CMS, it cannot be overridden as it wouldn't make sense for the Variant to have a different value.
+</Callout>
+
+### Override Images <FieldBadges type='media' multiple /> [#override-images]
+
+You can override the images that are configured at the product level for each variant. This allows you to provide custom images for each variant that are different from the base product. If this field is used, the base product images will not be displayed for the variant.
+
+### Extend Images <FieldBadges type='media' multiple /> [#extend-images]
+
+A list of images that are displayed alongside the base Product image(s). These images can be used to showcase different views or configurations of the product, such as different colors or styles. If this field is used, the base product images will still be displayed for the variant, unless `Override Images` is used.

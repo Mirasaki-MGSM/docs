@@ -1,0 +1,69 @@
+---
+title: Perk Modules
+description: Learn more about the perks (modules) that are available for Product and Product Variant Content types.
+full: false
+---
+
+import { FieldBadges } from '@/components/ui/badge';
+
+## Introduction
+
+Perks are modules that can be added to a Product or Product Variant content type. They are used to add additional rewards or benefits to a product. Perks can be added to a product or product variant by selecting them from the "Modules" field in the CMS. You can as many perk component modules as you want. If you duplicate a perk module, it will override the existing one (except for repeating modules, indicated by the `multiple` badge, like [Skin Configuration](#skin-configuration)).
+
+### CFTools Stat Reset <FieldBadges type='Component' hideOptional /> [#cftoolsStatReset]
+
+The CFTools Stat Reset module resets the stats of a player in the CFTools database when purchased. The component can be configured to reset the stats of the user/player that purchases it, or the stats of another player (by entering their Steam ID, this comes with some integrity risks).
+
+#### Status <FieldBadges type='boolean' required /> [#cftoolsStatReset#status]
+
+Indicates wether or not this perk is currently active/enabled. If the field is set to `true`, the perk will be processed when the product, or variant, is purchased. You can temporarily disable this perk by setting this field to `false` - useful during testing or CFTools maintenance/outages.
+
+#### Input Name <FieldBadges type='relation(Form Input)' /> [#cftoolsStatReset#inputName]
+
+The `name` of the Form Input field that will be used to collect the Steam ID of the player whose stats will be reset. Please see the [Form Input](/docs/cms/products/form-input) documentation for more information on how to create and use form inputs.
+
+### Group Tag Color <FieldBadges type='Component' hideOptional /> [#chatTagColor]
+
+The Group Tag Color module allows users to select a custom color for their chat tag, applying to their entire (in-game) player group. Please see the [Group Tag Color](/docs/integrations/lb-master/group-tag-colors) documentation for more information on the server-side implementation.
+
+#### Status <FieldBadges type='boolean' required /> [#chatTagColor#status]
+
+#### Once Per Group <FieldBadges type='boolean' required /> [#chatTagColor#oncePerGroup]
+
+#### Input Name <FieldBadges type='relation(Form Input)' required /> [#chatTagColor#inputName]
+
+#### Use Redeem Points <FieldBadges type='boolean' /> [#chatTagColor#useRedeemPoints]
+
+#### Redeem Points Is Infinity <FieldBadges type='boolean' /> [#chatTagColor#redeemPointsIsInfinity]
+
+### Killfeed Color <FieldBadges type='Component' hideOptional /> [#killfeedColor]
+
+#### Status <FieldBadges type='boolean' required /> [#killfeedColor#status]
+
+#### Input Name <FieldBadges type='relation(Form Input)' required /> [#killfeedColor#inputName]
+
+### Skin Configuration <FieldBadges type='Component' multiple hideOptional /> [#skinConfiguration]
+
+#### Status <FieldBadges type='boolean' required /> [#skinConfiguration#status]
+
+#### Type <FieldBadges type='enum' required options={['Player', 'Group']} /> [#skinConfiguration#type]
+
+#### Permission Group Name <FieldBadges type='string' required /> [#skinConfiguration#permissionGroupName]
+
+### Subscription <FieldBadges type='Component' hideOptional /> [#subscription]
+
+#### Interval Count <FieldBadges type='number' required min={1} max={1095} /> [#subscription#intervalCount]
+
+#### Interval (Unit) <FieldBadges type='enum' required options={['day', 'week', 'month', 'year']} /> [#subscription#intervalUnit]
+
+#### Trial Period Days <FieldBadges type='number' min={0} /> [#subscription#trialPeriodDays]
+
+#### Price in Cents per Cycle <FieldBadges type='number' min={75} max={999999} /> [#subscription#price]
+
+#### Default Subscribing Active <FieldBadges type='boolean' /> [#subscription#defaultSubscribingActive]
+
+#### Show Badge on Product Card <FieldBadges type='boolean' /> [#subscription#showBadgeOnProductCard]
+
+#### Subscription Method <FieldBadges type='enum' required options={['Many, see below']} /> [#subscription#subscriptionMethod]
+
+['Disabled', 'Checkbox to Subscribe in Order Details', 'Toggle Button in Checkout', 'Separate Button in Product Info', 'Payment Plan Comparison']

@@ -1,0 +1,39 @@
+---
+title: Perks Component
+description: Learn more about the Perks component for the Product Content Type in the CMS.
+full: false
+---
+
+import { FieldBadges } from '@/components/ui/badge';
+
+## Perks <FieldBadges type='Component' /> [#perks]
+
+The perks component consists of multiple (common) fields that are used to define the perks available for the product. Perks are special benefits, rewards, or features that users receive when they purchase the product. Perks can include in-game items, virtual currency, exclusive content, early access, and other rewards that enhance the user experience and provide additional value to the product. The perks component includes the following fields:
+
+<Callout type="info">
+  Note: This **Perks** component essentially consists of (baseline) fields/properties that don't deserve their own [Module](/docs/cms/products/modules) (yet). If you have a suggestion for a new perk, or a change to an existing one, please let us know in the [Discord](https://discord.gg/mgsm).
+</Callout>
+
+### Is Server Select <FieldBadges type='boolean' defaultValue={false} /> [#isServerSelect]
+
+Whether the user is required to select a server when purchasing the product. If this field is enabled, users will be prompted to select a server during the purchase/checkout process. If this field is disabled, the product, and it's perks, will apply to all published servers.
+
+### Priority Queue Hours <FieldBadges type='number' min={-1} /> [#priorityQueueHours]
+
+The number of hours the user will receive (**CFTools** for `PC`, **Nitrado** for `Xbox` and `PlayStation` [Server Types](/docs/cms/servers#type)) priority queue access when purchasing the product. Priority queue access allows users to skip the regular queue and join the server immediately.
+
+- If the value is set to **-1**, the user will receive permanent priority queue access when purchasing the product.
+- If the value is empty, or set to **0**, the user will not receive priority queue access when purchasing the product.
+- If the value is set to a positive number, the user will receive priority queue access for the specified number of hours when purchasing the product.
+
+### Perk Expire Hours <FieldBadges type='number' min={-1} /> [#perkExpireHours]
+
+The number of hours the user will have access to the perks when purchasing the product. Perks are special benefits, rewards, or features that users receive when they purchase the product. The perk expire hours field is used to determine how long the perks will be available to the user after purchasing the product. This applies to all perks that don't have their own expiration time field.
+
+### Prefix Group To Apply <FieldBadges type='string' /> [#prefixGroupToApply]
+
+The [prefix group](/docs/integrations/lb-master/chat-prefixes) that will be applied to the user (in-game) when purchasing the product. If this field is empty, no prefix group will be applied to the user. The value has to match the following format: `chat.prefix.<prefixGroup>`. For example, if you want to apply the `vip` prefix group (default configured group) to the user, you would enter `chat.prefix.vip` in this field.
+
+### Discord Role Rewards <FieldBadges type='relation(DiscordRoleReward)' multiple /> [#discordRoleRewards]
+
+Collection of [Discord Role Rewards](/docs/cms/discord-role-rewards) that will be granted to the user when purchasing the product. Discord role rewards are special benefits that users receive when they purchase the product, such as access to exclusive channels, special roles, and other perks on the Discord server. You can add multiple Discord role rewards to the product to provide users with a variety of benefits and incentives to purchase the product.

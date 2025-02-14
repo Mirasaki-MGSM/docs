@@ -164,3 +164,8 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+#nd-toc .hidden-in-toc {
+  display: none;
+  visibility: hidden;
+}
